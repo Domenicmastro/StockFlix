@@ -1,4 +1,4 @@
-package model.assets;
+package main.model.assets;
 
 import java.util.Iterator;
 

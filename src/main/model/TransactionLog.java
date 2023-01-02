@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 // a singleton class for logging
 public class TransactionLog {
