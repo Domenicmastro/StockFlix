@@ -1,4 +1,6 @@
 package model;
 
-public class WatchList extends ListOfCompany {
+import model.assets.ListOfAsset;
+
+public class WatchList extends ListOfAsset {
 }

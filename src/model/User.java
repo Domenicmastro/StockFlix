@@ -1,5 +1,7 @@
 package model;
 
+import model.assets.Portfolio;
+
 // a class representing a User
 public class User {
     private String userName;
