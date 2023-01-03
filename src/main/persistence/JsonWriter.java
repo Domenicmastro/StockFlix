@@ -1,5 +1,8 @@
 package main.persistence;
 
+import main.model.User;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

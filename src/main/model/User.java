@@ -3,6 +3,7 @@ package main.model;
 import main.model.assets.Portfolio;
 import main.model.assets.WatchList;
 import main.persistence.Writable;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.util.UUID;
@@ -24,6 +25,14 @@ public class User implements Writable {
         watchList = new WatchList();
     }
 
+    public User(String userName, UUID uuid, Image profilePicture, Portfolio portfolio, WatchList watchList) {
+        this.userName = userName;
+        this.uuid = uuid;
+        this.profilePicture = profilePicture;
+        this.portfolio = portfolio;
+        this.watchList = watchList;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -40,4 +49,8 @@ public class User implements Writable {
         return watchList;
     }
 
+    @Override
+    public JSONObject toJson() {
+        return null;
+    }
 }

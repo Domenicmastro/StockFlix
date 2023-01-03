@@ -2,6 +2,10 @@ package main.persistence;
 
 // Represents a reader that reads user from JSON data stored in file
 
+import main.model.User;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
