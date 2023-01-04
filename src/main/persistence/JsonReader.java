@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class JsonReader {
@@ -28,11 +29,11 @@ public class JsonReader {
         return parseUser(jsonObject);
     }
 
-    /*public List<User> readAccountList() throws IOException {
+    public List<User> readAccountList() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseUser(jsonObject);
-    }*/
+        return null;
+    }
 
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
@@ -79,7 +80,7 @@ public class JsonReader {
         double earningsBefore = jsonObject.getDouble("earningsBefore");
         float revGrowth = jsonObject.getFloat("revGrowth");
 
-        Company company = new Company(symbol, name, sector,
+        /*Company company = new Company(symbol, name, sector,
                 industry,
                 city,
                 state,
@@ -89,6 +90,6 @@ public class JsonReader {
                 marketCap,
                 earningsBefore,
                 revGrowth);
-        user.addToPortfolio(company);
+        user.addToPortfolio(company);*/
     }
 }
