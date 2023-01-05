@@ -2,8 +2,6 @@ package main.model;
 
 import main.model.assets.Portfolio;
 import main.model.assets.WatchList;
-import main.persistence.Writable;
-import org.json.JSONObject;
 
 import java.awt.*;
 import java.util.UUID;
@@ -11,13 +9,15 @@ import java.util.UUID;
 
 
 // a class representing a User
-public class User implements Writable {
+public class User {
     private String userName;
     private UUID uuid;
     private Image profilePicture;
     private Portfolio portfolio;
     private WatchList watchList;
 
+
+    // Constructor for creating user from scratch
     public User(String userName) {
         this.userName = userName;
         uuid = UUID.randomUUID();
@@ -25,6 +25,7 @@ public class User implements Writable {
         watchList = new WatchList();
     }
 
+    // Constructor for recreating user from JSON
     public User(String userName, UUID uuid, Image profilePicture, Portfolio portfolio, WatchList watchList) {
         this.userName = userName;
         this.uuid = uuid;
@@ -49,8 +50,4 @@ public class User implements Writable {
         return watchList;
     }
 
-    @Override
-    public JSONObject toJson() {
-        return null;
-    }
 }

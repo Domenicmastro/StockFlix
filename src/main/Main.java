@@ -1,16 +1,28 @@
 package main;
 
-import main.GUI.LoginPage;
+import main.model.assets.DetailedTicker;
+import main.model.assets.Ticker;
 
-import static main.persistence.CSVTickerReader.createTickerList;
+import java.util.ArrayList;
+import java.util.List;
+
+import static main.API.API.queryTicker;
+import static main.persistence.CSVReader.createTickerList;
 
 public class Main {
     public static void main(String[] args) {
-        // load ticker data
-        //(these need to be merged)
-        createTickerList("data/nasdaq-listed-symbols.csv");
-        createTickerList("data/nyse-listed.csv");
+        // load user list
 
-        new LoginPage();
+        // load ticker data
+        List<Ticker> nasdaq = createTickerList("data/nasdaq-listed-symbols.csv");
+        List<Ticker> nyse = createTickerList("data/nyse-listed.csv");
+
+        List<Ticker> merged = new ArrayList<>();
+        merged.addAll(nasdaq);
+        merged.addAll(nyse);
+
+        DetailedTicker test = queryTicker("AAPL");
+
+        //new LoginPage();
     }
 }

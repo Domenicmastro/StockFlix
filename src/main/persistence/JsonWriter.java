@@ -1,11 +1,12 @@
 package main.persistence;
 
+import com.google.gson.Gson;
 import main.model.User;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.List;
 
 // Represents a writer that writes JSON representation of user to file
 public class JsonWriter {
@@ -27,10 +28,18 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of user to file
+    public void write(List<User> userList) {
+        String json = new Gson().toJson(userList);
+
+        saveToFile(json);
+    }
+
+    /*// MODIFIES: this
+    // EFFECTS: writes JSON representation of user to file
     public void write(User user) {
         JSONObject json = user.toJson();
         saveToFile(json.toString(TAB));
-    }
+    }*/
 
     // MODIFIES: this
     // EFFECTS: closes writer

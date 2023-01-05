@@ -9,7 +9,7 @@ public class Transaction {
     private String description;
 
 
-    // Creates a transaction with the given description and the current date/time stamp.
+    // Creates a transaction with the given description and the current date/time stamp
     public Transaction(String description) {
         dateLogged = Calendar.getInstance().getTime();
         this.description = description;

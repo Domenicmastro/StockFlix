@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVTickerReader {
+public class CSVReader {
     //EFFECTS: creates the list of companies in the program using symbol lists in data folder
     public static List<Ticker> createTickerList(String fileName) {
         List<Ticker> allTickers = new ArrayList<>();
@@ -39,10 +39,10 @@ public class CSVTickerReader {
 
     //EFFECTS: Helper function for createTickerList, creates a company for given line in CSV file.
     public static Ticker createTicker(String[] data) {
-        String symbol = data[0];
+        String ticker = data[0];
         String name = data[1];
 
-        return new Ticker(symbol, name);
+        return new Ticker(ticker, name);
     }
 
 }

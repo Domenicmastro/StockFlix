@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,20 +20,6 @@ public class JsonReader {
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
-    }
-
-    // EFFECTS: reads user from file and returns it;
-    // throws IOException if an error occurs reading data from file
-    public User readUser() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseUser(jsonObject);
-    }
-
-    public List<User> readAccountList() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return null;
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -46,27 +33,59 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+
+    // EFFECTS: reads user from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    /*public User readUser() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        return parseUser(jsonObject);
+    }*/
+
+    // EFFECTS: reads user list from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public List<User> readAccountList() throws IOException {
+        List<User> accountList = new ArrayList<>();
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+
+        JSONArray jsonArray = jsonObject.getJSONArray("users");
+        for (Object json : jsonArray) {
+            JSONObject nextUser = (JSONObject) json;
+            accountList.add(parseUser(nextUser));
+        }
+
+        return accountList;
+    }
+
+
     // EFFECTS: parses user from JSON object and returns it
     private User parseUser(JSONObject jsonObject) {
         String name = jsonObject.getString("userName");
+        String uuid = jsonObject.getString("uuid");
+
+
+
         User user = new User(name);
-        addCompanies(user, jsonObject);
+        addAssetsToPortfolio(user, jsonObject);
         return user;
+
+        //User(String userName, UUID uuid, Image profilePicture, Portfolio portfolio, WatchList watchList)
     }
 
     // MODIFIES: user
     // EFFECTS: parses companies from JSON object and adds them to user
-    private void addCompanies(User user, JSONObject jsonObject) {
+    private void addAssetsToPortfolio(User user, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("portfolio");
         for (Object json : jsonArray) {
             JSONObject nextCompany = (JSONObject) json;
-            addCompany(user, nextCompany);
+            addAsset(user, nextCompany);
         }
     }
 
     // MODIFIES: user
     // EFFECTS: parses company from JSON object and adds it to user
-    private void addCompany(User user, JSONObject jsonObject) {
+    private void addAsset(User user, JSONObject jsonObject) {
         String symbol = jsonObject.getString("symbol");
         String name = jsonObject.getString("name");
         String sector = jsonObject.getString("sector");

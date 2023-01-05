@@ -1,4 +1,4 @@
 package main.model.assets;
 
-public class PurchasedAsset {
+public interface Tradable {
 }
